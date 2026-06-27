@@ -85,7 +85,7 @@
 </style>
 </head>
 <body>
-<div class="top-bar"><span class="title">📖 Streams in the Desert – Bilingual Edition</span><select id="chapterSelect"></select></div>
+<div class="top-bar"><span class="title">📖 Streams in the Desert (荒漠甘泉) – Bilingual Edition</span><select id="chapterSelect"></select></div>
 <div class="container">
   <div id="error-message"></div>
   <div class="toolbar">
@@ -10186,7 +10186,7 @@
       bookData.chapters.forEach((ch, idx) => {
         const opt = document.createElement("option");
         opt.value = idx;
-        opt.textContent = "Ch. " + ch.id + ": " + ch.title;
+        opt.textContent = "Week. " + ch.id + ": " + ch.title;
         select.appendChild(opt);
       });
       select.addEventListener("change", (e) => loadChapter(parseInt(e.target.value)));
@@ -10421,12 +10421,19 @@
     window.addEventListener('resize', () => applyMobileLang(mobileLang));
 
     // Swipe left = show Chinese, swipe right = show English
+    // Only triggers if horizontal movement clearly dominates vertical (not a scroll)
     let swipeStartX = 0;
+    let swipeStartY = 0;
     const colsContainer = document.getElementById('colsContainer');
-    colsContainer.addEventListener('touchstart', e => { swipeStartX = e.touches[0].clientX; }, { passive: true });
+    colsContainer.addEventListener('touchstart', e => {
+      swipeStartX = e.touches[0].clientX;
+      swipeStartY = e.touches[0].clientY;
+    }, { passive: true });
     colsContainer.addEventListener('touchend', e => {
       const dx = e.changedTouches[0].clientX - swipeStartX;
-      if (Math.abs(dx) > 50 && window.innerWidth <= 640) {
+      const dy = e.changedTouches[0].clientY - swipeStartY;
+      const isHorizontalSwipe = Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 2;
+      if (isHorizontalSwipe && window.innerWidth <= 640) {
         applyMobileLang(dx < 0 ? 'zh' : 'en');
       }
     }, { passive: true });
