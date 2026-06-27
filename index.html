@@ -135,8 +135,8 @@
 </footer>
 
 <script id="bookDataScript" type="application/json">{
-  "title": "Streams in the Desert",
-  "author": "Mrs. Charles E. Cowmankao men fu",
+  "title": "荒漠甘泉",
+  "author": "考门夫人",
   "chapters": [
     {
       "id": 1,
@@ -10186,7 +10186,7 @@
       bookData.chapters.forEach((ch, idx) => {
         const opt = document.createElement("option");
         opt.value = idx;
-        opt.textContent = "Week. " + ch.id + ": " + ch.title;
+        opt.textContent = "Week " + ch.id + ": " + ch.title;
         select.appendChild(opt);
       });
       select.addEventListener("change", (e) => loadChapter(parseInt(e.target.value)));
@@ -10198,7 +10198,7 @@
       currentChapter = bookData.chapters[index];
       currentSection = 0;
       currentPage = 0;
-      document.querySelector(".title").textContent = "📖 " + bookData.title + " – Ch. " + currentChapter.id;
+      document.querySelector(".title").textContent = "📖 " + bookData.title + " – Week " + currentChapter.id;
       detectReadingMode(currentChapter);
       readingModeSelect.value = readingMode;
       setupAudioForChapter(currentChapter);
