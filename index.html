@@ -8,64 +8,80 @@
   :root { --primary: #1b3a4b; --accent: #c44536; --bg: #f9f5f0; --card-bg: #fff; --text: #2c2c2c; --vocab-bg: #fffaec; --vocab-border: #e6a817; --shadow: 0 2px 12px rgba(0,0,0,0.05); }
   * { box-sizing: border-box; margin:0; padding:0; }
   body { font-family: "Segoe UI","Noto Sans SC","Microsoft YaHei",Georgia,serif; background:var(--bg); color:var(--text); line-height:1.7; }
-  .top-bar { background:#0b1c26; color:#fff; padding:0.6rem 1.4rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; position:sticky; top:0; z-index:100; }
-  .top-bar .title { font-weight:bold; font-size:1.2rem; }
-  .top-bar select { padding:0.4rem 0.8rem; border-radius:4px; border:none; font-size:0.9rem; background:#fff; color:#0b1c26; cursor:pointer; }
-  .container { max-width:1400px; margin:0 auto; padding:1.2rem 1rem 2rem; }
-  .toolbar { display:flex; flex-wrap:wrap; gap:0.8rem; align-items:center; background:#fff; padding:0.8rem 1.2rem; border-radius:12px; margin:1rem 0; box-shadow:var(--shadow); }
-  .btn { background:#1b3a4b; color:#fff; border:none; padding:0.5rem 1.2rem; border-radius:30px; font-weight:600; cursor:pointer; font-size:0.9rem; }
+  .top-bar { background:#0b1c26; color:#fff; padding:0.6rem 1.4rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem; position:sticky; top:0; z-index:100; }
+  .top-bar .title { font-weight:bold; font-size:1.1rem; flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .top-bar select { padding:0.4rem 0.6rem; border-radius:4px; border:none; font-size:0.85rem; background:#fff; color:#0b1c26; cursor:pointer; max-width:180px; }
+  .container { max-width:1400px; margin:0 auto; padding:1rem 1rem 2rem; }
+  .toolbar { display:flex; flex-wrap:wrap; gap:0.6rem; align-items:center; background:#fff; padding:0.7rem 1rem; border-radius:12px; margin:0.8rem 0; box-shadow:var(--shadow); }
+  .btn { background:#1b3a4b; color:#fff; border:none; padding:0.5rem 1.1rem; border-radius:30px; font-weight:600; cursor:pointer; font-size:0.9rem; white-space:nowrap; }
+  .btn:active { opacity:0.85; }
   .btn-outline { background:#fff; border:2px solid #1b3a4b; color:#1b3a4b; }
   .btn-outline:hover { background:#f0f5f9; }
-  .simple-indicator { font-size:0.8rem; color:#ac7339; display:none; margin:0 0.4rem; }
+  .simple-indicator { font-size:0.8rem; color:#ac7339; display:none; margin:0 0.3rem; }
   .simple-indicator.active { display:inline; }
-  #sectionTabs { display:flex; gap:0.5rem; margin-bottom:1.5rem; flex-wrap:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch; border-bottom:2px solid #ddd; padding-bottom:1rem; }
-  .section-tab { padding:0.6rem 1.2rem; background:#f5f5f5; border:1px solid #ddd; border-radius:6px; cursor:pointer; font-size:0.9rem; white-space:nowrap; transition:all 0.3s; }
+  /* Section tabs */
+  #sectionTabs { display:flex; gap:0.5rem; margin-bottom:1rem; flex-wrap:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch; border-bottom:2px solid #ddd; padding-bottom:0.8rem; scrollbar-width:none; }
+  #sectionTabs::-webkit-scrollbar { display:none; }
+  .section-tab { padding:0.65rem 1.1rem; background:#f5f5f5; border:1px solid #ddd; border-radius:8px; cursor:pointer; font-size:0.9rem; white-space:nowrap; transition:all 0.2s; min-height:44px; }
   .section-tab.active { background:var(--primary); color:#fff; border-color:var(--primary); }
   .section-tab:hover:not(.active) { background:#e8e8e8; }
-  .section-tab:focus { outline:2px solid var(--primary); outline-offset:2px; }
-  #sectionProgress { font-size:0.9rem; color:#777; margin-bottom:1rem; }
-  .cols { display:flex; gap:2rem; margin:1.5rem 0; }
-  @media (max-width:850px) { .cols { flex-direction:column; } }
-  .col { flex:1; min-width:0; background:var(--card-bg); border-radius:16px; box-shadow:var(--shadow); padding:1.8rem 2rem; max-height:70vh; overflow-y:auto; }
-  .col-title { font-size:0.85rem; text-transform:uppercase; letter-spacing:1px; color:#777; margin-bottom:1rem; border-left:4px solid var(--accent); padding-left:0.8rem; font-weight:700; }
+  #sectionProgress { font-size:0.9rem; color:#777; margin-bottom:0.8rem; }
+  /* Desktop: two columns */
+  .cols { display:flex; gap:2rem; margin:1rem 0; }
+  .col { flex:1; min-width:0; background:var(--card-bg); border-radius:16px; box-shadow:var(--shadow); padding:1.6rem 1.8rem; max-height:70vh; overflow-y:auto; }
+  .col-title { font-size:0.82rem; text-transform:uppercase; letter-spacing:1px; color:#777; margin-bottom:1rem; border-left:4px solid var(--accent); padding-left:0.8rem; font-weight:700; }
   .col p { margin-bottom:1.3rem; font-size:1.05rem; }
   .col img { max-width:100%; border-radius:8px; display:block; margin:0.8rem auto; box-shadow:0 2px 10px rgba(0,0,0,0.12); }
+  /* Mobile: single column with toggle */
+  .lang-toggle-bar { display:none; gap:0; margin:0.8rem 0; border-radius:10px; overflow:hidden; border:2px solid var(--primary); }
+  .lang-toggle-btn { flex:1; padding:0.75rem; font-size:1rem; font-weight:700; background:#fff; color:var(--primary); border:none; cursor:pointer; transition:background 0.2s, color 0.2s; }
+  .lang-toggle-btn.active { background:var(--primary); color:#fff; }
+  @media (max-width:640px) {
+    .cols { display:block; }
+    .col { max-height:none; overflow-y:visible; border-radius:12px; padding:1.2rem 1rem; margin-bottom:0; }
+    .col { display:none; }
+    .col.mobile-visible { display:block; }
+    .lang-toggle-bar { display:flex; }
+    .toolbar { gap:0.5rem; padding:0.6rem 0.8rem; }
+    .top-bar .title { font-size:0.95rem; }
+    .section-tab { font-size:0.85rem; padding:0.6rem 0.9rem; }
+    .quiz-box { display:none; }
+    .vocab-popup { left:1rem !important; right:1rem !important; width:auto !important; max-width:none !important; bottom:1rem; top:auto !important; }
+  }
+  /* Vocab */
   .vocab-trigger { background:var(--vocab-bg); border-bottom:2px dotted #b66; cursor:pointer; font-weight:600; padding:0 0.15rem; transition:background 0.15s; }
-  .vocab-trigger:hover { background:#ffe082; }
+  .vocab-trigger:hover, .vocab-trigger:active { background:#ffe082; }
   .vocab-popup { position:fixed; z-index:200; background:#2d2d2d; color:#f0f0f0; border-radius:12px; padding:1rem 1.2rem; max-width:300px; font-size:0.9rem; line-height:1.5; box-shadow:0 12px 28px rgba(0,0,0,0.4); opacity:0; transform:translateY(5px); pointer-events:none; transition:opacity 0.2s, transform 0.2s; }
   .vocab-popup.show { opacity:1; transform:translateY(0); pointer-events:auto; }
   .vocab-popup .zh { font-size:1.15rem; font-weight:700; color:#ffcc80; margin-bottom:0.3rem; }
-  .popup-close { position:absolute; top:5px; right:10px; background:none; border:none; color:#aaa; cursor:pointer; font-size:1.2rem; }
-  .quiz-box { background:#fff; border-radius:16px; padding:1.8rem; margin-top:2rem; box-shadow:var(--shadow); }
-  .quiz-item-wrapper { margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 1px dashed #eee; }
-  .rationale-container { font-size: 0.9rem; margin-top: 0.4rem; padding: 0.4rem 0.6rem; border-radius: 6px; display: none; background: #f8f9fa; line-height: 1.5; }
+  .popup-close { position:absolute; top:5px; right:10px; background:none; border:none; color:#aaa; cursor:pointer; font-size:1.4rem; padding:0.2rem; }
+  /* Quiz */
+  .quiz-box { background:#fff; border-radius:16px; padding:1.6rem; margin-top:1.5rem; box-shadow:var(--shadow); }
+  .quiz-item-wrapper { margin-bottom:1rem; padding-bottom:0.8rem; border-bottom:1px dashed #eee; }
+  .rationale-container { font-size:0.9rem; margin-top:0.4rem; padding:0.4rem 0.6rem; border-radius:6px; display:none; background:#f8f9fa; line-height:1.5; }
   .feedback { font-weight:600; margin-top:1rem; }
+  /* Audio bar */
+  #sectionAudioBar { display:none; align-items:center; gap:0.7rem; background:#0b1c26; color:#fff; border-radius:12px; padding:0.7rem 1rem; margin:0.5rem 0; flex-wrap:wrap; }
+  #sectionAudioBar .audio-label { font-size:0.82rem; color:#aebfc7; white-space:nowrap; }
+  #sectionAudioBar #audioSectionLabel { font-size:0.82rem; color:#e6a817; font-weight:600; }
+  #sectionAudio { flex:1; min-width:200px; height:36px; }
+  /* Misc */
   .page-break { border-top:2px dashed #ccc; padding:1rem 0; text-align:center; color:#999; font-size:0.85rem; margin:1.5rem 0; }
-  footer { text-align:center; color:#777; font-size:0.8rem; margin-top:2.5rem; padding:1.6rem 0 1.2rem; border-top:1px solid #eee; }
-  .wt-logo { font-family:"Segoe UI","Noto Sans SC","Microsoft YaHei",sans-serif; font-weight:700; font-size:1.25rem; color:#1b3a4b; letter-spacing:0.5px; margin-bottom:0.35rem; }
+  footer { text-align:center; color:#777; font-size:0.8rem; margin-top:2rem; padding:1.4rem 0 1rem; border-top:1px solid #eee; }
+  .wt-logo { font-family:"Segoe UI","Noto Sans SC","Microsoft YaHei",sans-serif; font-weight:700; font-size:1.2rem; color:#1b3a4b; letter-spacing:0.5px; margin-bottom:0.3rem; }
   .wt-logo .wt-i { position:relative; display:inline-block; }
   .wt-logo .wt-i::after { content:''; position:absolute; top:-7px; left:3px; width:6px; height:6px; border-radius:50%; background:#e6a817; }
-  .wt-underline { width:90px; height:3px; background:#e6a817; border-radius:0; margin:0.3rem auto 0.6rem; }
+  .wt-underline { width:90px; height:3px; background:#e6a817; border-radius:0; margin:0.3rem auto 0.5rem; }
   .wt-credit { font-size:0.8rem; color:#777; }
-  #error-message { background: #ffe0e0; border: 1px solid red; padding: 1rem; border-radius: 8px; display: none; color: red; margin: 1rem 0; }
-  #readingModeSelect { padding:0.3rem 0.8rem; border-radius:20px; border:1px solid #ccc; font-size:0.9rem; }
+  #error-message { background:#ffe0e0; border:1px solid red; padding:1rem; border-radius:8px; display:none; color:red; margin:1rem 0; }
+  #readingModeSelect { padding:0.3rem 0.7rem; border-radius:20px; border:1px solid #ccc; font-size:0.85rem; }
   .paragraph-image { margin:1rem 0; }
   .paragraph-image img { max-width:100%; border-radius:6px; }
-  .col p.reading-active { background:#fff3cd; box-shadow:0 0 0 4px #fff3cd; border-radius:4px; transition:background 0.25s ease; }
-  .speak-settings { display:flex; align-items:center; gap:0.6rem; font-size:0.85rem; color:#555; }
-  .speak-settings select, .speak-settings input[type="range"] { vertical-align:middle; }
-  #voiceSelect { padding:0.25rem 0.5rem; border-radius:6px; border:1px solid #ccc; font-size:0.85rem; max-width:180px; }
-  #rateSlider { width:90px; }
-  .btn-icon { background:#fff; border:2px solid #1b3a4b; color:#1b3a4b; border-radius:50%; width:2.2rem; height:2.2rem; font-size:1rem; cursor:pointer; line-height:1; }
-  .page-nav-btn { background:#f5f5f5; border:1px solid #ddd; border-radius:6px; padding:0.4rem 1rem; cursor:pointer; font-size:0.9rem; }
+  .page-nav-btn { background:#f5f5f5; border:1px solid #ddd; border-radius:6px; padding:0.5rem 1rem; cursor:pointer; font-size:0.9rem; min-height:44px; }
   .page-nav-btn:disabled { opacity:0.4; cursor:default; }
-  .page-nav-label { font-size:0.9rem; color:#777; margin:0 0.8rem; }
-  #sectionAudioBar { display:none; align-items:center; gap:0.8rem; background:#0b1c26; color:#fff; border-radius:12px; padding:0.7rem 1.2rem; margin:0.5rem 0; flex-wrap:wrap; }
-  #sectionAudioBar .audio-label { font-size:0.85rem; color:#aebfc7; white-space:nowrap; }
-  #sectionAudioBar #audioSectionLabel { font-size:0.85rem; color:#e6a817; font-weight:600; }
+  .page-nav-label { font-size:0.9rem; color:#777; margin:0 0.6rem; }
   .btn-gold { background:#e6a817; color:#0b1c26; border:none; font-weight:700; }
   .btn-gold:hover { background:#d4970f; }
-  .btn-gold:disabled { opacity:0.4; cursor:default; }
 </style>
 </head>
 <body>
@@ -73,28 +89,21 @@
 <div class="container">
   <div id="error-message"></div>
   <div class="toolbar">
-    <button class="btn" id="speakBtn">🔊 朗读本节原文</button>
-    <button class="btn-icon" id="stopBtn" title="停止朗读" style="display:none;">⏹</button>
-    <button class="btn btn-outline" id="speakZhBtn">🔊 朗读中文翻译</button>
-    <div class="speak-settings">
-      <label>音色 <select id="voiceSelect"></select></label>
-      <label>速度 <input type="range" id="rateSlider" min="0.5" max="1.5" step="0.1" value="0.9"> <span id="rateLabel">0.9x</span></label>
-    </div>
     <button class="btn btn-outline" id="simplifyToggle">📖 Switch to Simplified</button>
     <span class="simple-indicator" id="simpActiveLabel">(Simplified Active)</span>
-    <span style="margin-left:auto; font-size:0.85rem; color:#555;">💡 Tap highlighted words</span>
-    <label style="font-weight:400; margin-left:0.5rem;">Mode:
+    <span style="margin-left:auto; font-size:0.82rem; color:#555;">💡 Tap highlighted words</span>
+    <label style="font-weight:400; margin-left:0.4rem; font-size:0.9rem;">Mode:
       <select id="readingModeSelect">
-        <option value="sections">📑 Sections Mode</option>
-        <option value="full">📖 Full Chapter View</option>
-        <option value="pages">📄 Simulated Pages</option>
+        <option value="sections">📑 Sections</option>
+        <option value="full">📖 Full Chapter</option>
+        <option value="pages">📄 Pages</option>
       </select>
     </label>
   </div>
   <div id="sectionAudioBar">
     <span class="audio-label">🎵</span>
     <span id="audioSectionLabel"></span>
-    <audio id="sectionAudio" controls style="flex:1;min-width:220px;"></audio>
+    <audio id="sectionAudio" controls></audio>
   </div>
 
   <div id="tsPanel" style="display:none;"></div>
@@ -102,8 +111,14 @@
   <div id="sectionTabs"></div>
   <div id="sectionProgress"></div>
 
-  <div class="cols">
-    <div class="col" id="enCol"><div class="col-title">🇬🇧 English Version</div><div id="enContent"></div></div>
+  <!-- EN/ZH toggle — visible on mobile only -->
+  <div class="lang-toggle-bar" id="langToggleBar">
+    <button class="lang-toggle-btn active" id="toggleEnBtn">🇬🇧 English</button>
+    <button class="lang-toggle-btn" id="toggleZhBtn">🇨🇳 中文</button>
+  </div>
+
+  <div class="cols" id="colsContainer">
+    <div class="col mobile-visible" id="enCol"><div class="col-title">🇬🇧 English Version</div><div id="enContent"></div></div>
     <div class="col" id="zhCol"><div class="col-title">🇨🇳 Chinese Translation</div><div id="zhContent"></div></div>
   </div>
 
@@ -10141,15 +10156,11 @@
     let currentSection = 0;
     let currentPage = 0;
     let isSimplified = false;
-    let speechState = 'idle'; // 'idle' | 'playing' | 'paused'
-    let readingColumn = 'en'; // 'en' | 'zh'
-    let readingRanges = [];
     let readingMode = 'sections';
     let currentVocabTrigger = null;
+    let mobileLang = 'en'; // EN/ZH toggle state for mobile
     const READING_MODE_KEY = bookData.title + "_readingMode";
     const PROGRESS_KEY = bookData.title + "_progress";
-    const VOICE_KEY = bookData.title + "_voice";
-    const RATE_KEY = bookData.title + "_rate";
     const PAGE_SIZE = 6;
     const placeholderQuiz = [{ text: "This section has no quiz yet.", answer: true, rationale: "" }];
 
@@ -10213,6 +10224,7 @@
       const paragraphs = currentChapter.paragraphs || (currentChapter.sections ? currentChapter.sections.flatMap(s => s.paragraphs) : []);
       renderParagraphs(paragraphs);
       renderQuiz(currentChapter.quiz || []);
+      applyMobileLang(mobileLang);
     }
 
     function renderPagesMode() {
@@ -10242,6 +10254,7 @@
       progress.appendChild(nextBtn);
 
       renderQuiz(currentChapter.quiz || []);
+      applyMobileLang(mobileLang);
     }
 
     function renderSectionsMode() {
@@ -10265,6 +10278,7 @@
       renderParagraphs(sections[currentSection].paragraphs);
       renderQuiz(sections[currentSection].quiz || []);
       loadSectionAudio(sections[currentSection]);
+      applyMobileLang(mobileLang);
     }
 
     // ----- KEY FIX: renderParagraphs now handles "image" field -----
@@ -10325,11 +10339,18 @@
       document.getElementById('popupZh').textContent = def.zh;
       document.getElementById('popupExplain').textContent = '📘 ' + def.explain;
       document.getElementById('popupSimple').textContent = '💬 Simple: ' + def.simple;
-      const rect = trigger.getBoundingClientRect();
-      let top = rect.bottom + 8, left = rect.left;
-      if (left + 320 > window.innerWidth) left = window.innerWidth - 330;
-      if (top + 180 > window.innerHeight) top = rect.top - 180;
-      popup.style.top = top + 'px'; popup.style.left = left + 'px';
+      if (window.innerWidth <= 640) {
+        // Mobile: pin to bottom of viewport via CSS class (CSS handles position)
+        popup.style.top = ''; popup.style.left = '';
+        popup.style.bottom = '1rem'; popup.style.left = '1rem'; popup.style.right = '1rem'; popup.style.width = 'auto'; popup.style.maxWidth = 'none';
+      } else {
+        popup.style.bottom = ''; popup.style.right = ''; popup.style.width = ''; popup.style.maxWidth = '';
+        const rect = trigger.getBoundingClientRect();
+        let top = rect.bottom + 8, left = rect.left;
+        if (left + 320 > window.innerWidth) left = window.innerWidth - 330;
+        if (top + 180 > window.innerHeight) top = rect.top - 180;
+        popup.style.top = top + 'px'; popup.style.left = left + 'px';
+      }
       popup.classList.add('show'); currentVocabTrigger = trigger;
     }
     function hidePopup() { popup.classList.remove('show'); currentVocabTrigger = null; }
@@ -10374,182 +10395,44 @@
     }
 
     document.addEventListener('visibilitychange', () => {
-      if (document.hidden) { sectionAudio.pause(); stopSpeaking(); }
+      if (document.hidden) sectionAudio.pause();
     });
 
-    function populateVoices() {
-      if (!window.speechSynthesis) return;
-      const voices = speechSynthesis.getVoices().filter(v => v.lang.toLowerCase().startsWith('en'));
-      const voiceSelect = document.getElementById('voiceSelect');
-      if (!voices.length) return;
-      const previousValue = voiceSelect.value;
-      voiceSelect.innerHTML = '';
-      voices.forEach(v => {
-        const opt = document.createElement('option');
-        opt.value = v.name;
-        opt.textContent = v.name + ' (' + v.lang + ')';
-        voiceSelect.appendChild(opt);
-      });
-      const saved = localStorage.getItem(VOICE_KEY);
-      if (saved && voices.some(v => v.name === saved)) voiceSelect.value = saved;
-      else if (previousValue && voices.some(v => v.name === previousValue)) voiceSelect.value = previousValue;
-    }
-    if (window.speechSynthesis) {
-      populateVoices();
-      speechSynthesis.onvoiceschanged = populateVoices;
-    }
-    const voiceSelect = document.getElementById('voiceSelect');
-    voiceSelect.addEventListener('change', () => localStorage.setItem(VOICE_KEY, voiceSelect.value));
-
-    const rateSlider = document.getElementById('rateSlider');
-    const rateLabel = document.getElementById('rateLabel');
-    const savedRate = parseFloat(localStorage.getItem(RATE_KEY));
-    if (!isNaN(savedRate)) rateSlider.value = savedRate;
-    rateLabel.textContent = rateSlider.value + 'x';
-    rateSlider.addEventListener('input', () => {
-      rateLabel.textContent = rateSlider.value + 'x';
-      localStorage.setItem(RATE_KEY, rateSlider.value);
-    });
-
-    function getCurrentParagraphs() {
-      if (readingMode === 'sections' && currentChapter.sections && currentChapter.sections.length > 0) {
-        return currentChapter.sections[currentSection].paragraphs || [];
-      } else if (readingMode === 'pages') {
-        const all = currentChapter.paragraphs || (currentChapter.sections ? currentChapter.sections.flatMap(s => s.paragraphs) : []);
-        return all.slice(currentPage * PAGE_SIZE, (currentPage + 1) * PAGE_SIZE);
-      }
-      return currentChapter.paragraphs || (currentChapter.sections ? currentChapter.sections.flatMap(s => s.paragraphs) : []);
-    }
-
-    function buildSpeechData(paragraphs, lang) {
-      let text = '';
-      const ranges = [];
-      paragraphs.forEach((p, idx) => {
-        let raw;
-        if (lang === 'en') { const _d = document.createElement('div'); _d.innerHTML = (isSimplified ? (p.simpEn || '') : (p.en || '')); raw = _d.textContent; }
-        else raw = isSimplified ? (p.simpZh || '') : (p.zh || '');
-        raw = (raw || '').trim();
-        const start = text.length;
-        if (raw) text += raw + '. ';
-        ranges.push({ start: start, end: text.length, idx: idx });
-      });
-      return { text: text.trim(), ranges: ranges };
-    }
-
-    function clearHighlight() {
-      document.querySelectorAll('.reading-active').forEach(el => el.classList.remove('reading-active'));
-    }
-
-    function highlightParagraph(pIdx, column) {
-      const div = document.getElementById(column === 'zh' ? 'zhContent' : 'enContent');
-      const ps = div.querySelectorAll('p');
-      clearHighlight();
-      const el = ps[pIdx];
-      if (el) { el.classList.add('reading-active'); el.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); }
-    }
-
-    function updateSpeakButtons() {
-      const speakBtn = document.getElementById('speakBtn');
-      const speakZhBtn = document.getElementById('speakZhBtn');
-      const stopBtn = document.getElementById('stopBtn');
-      speakBtn.textContent = '🔊 朗读本节原文';
-      speakZhBtn.textContent = '🔊 朗读中文翻译';
-      stopBtn.style.display = speechState === 'idle' ? 'none' : 'inline-block';
-      if (speechState === 'playing') {
-        if (readingColumn === 'en') speakBtn.textContent = '⏸ 暂停朗读';
-        else speakZhBtn.textContent = '⏸ 暂停朗读';
-      } else if (speechState === 'paused-between') {
-        const nextIdx = currentSection + 1;
-        const sections = currentChapter.sections;
-        const label = sections && sections[nextIdx] ? '▶ 继续第 ' + (nextIdx + 1) + ' 节' : '▶ 继续朗读';
-        if (readingColumn === 'en') speakBtn.textContent = label;
-        else speakZhBtn.textContent = label;
-        stopBtn.style.display = 'inline-block';
-      } else if (speechState === 'paused') {
-        if (readingColumn === 'en') speakBtn.textContent = '▶ 继续朗读';
-        else speakZhBtn.textContent = '▶ 继续朗读';
-      }
-    }
-
-    function resetSpeechState() {
-      speechState = 'idle';
-      clearHighlight();
-      updateSpeakButtons();
-    }
-
-    function stopSpeaking() {
-      if (window.speechSynthesis) speechSynthesis.cancel();
-      resetSpeechState();
-    }
-
-    function advanceToNextSection() {
-      const sections = currentChapter && currentChapter.sections;
-      if (!sections) { resetSpeechState(); return; }
-      const nextIdx = currentSection + 1;
-      if (nextIdx >= sections.length) { resetSpeechState(); return; }
-      currentSection = nextIdx;
-      renderSectionsMode();
-      saveFullProgress();
-      speechState = 'paused-between';
-      updateSpeakButtons();
-    }
-
-    function startSpeaking(lang) {
-      const paragraphs = getCurrentParagraphs();
-      const data = buildSpeechData(paragraphs, lang);
-      if (!data.text) return;
-      readingRanges = data.ranges;
-      readingColumn = lang;
-      speechSynthesis.cancel();
-      const u = new SpeechSynthesisUtterance(data.text);
-      u.rate = parseFloat(rateSlider.value) || 0.9;
-      if (lang === 'en') {
-        u.lang = 'en-US';
-        const voices = speechSynthesis.getVoices();
-        const chosen = voices.find(v => v.name === voiceSelect.value) || voices.find(v => v.lang.toLowerCase().startsWith('en'));
-        if (chosen) u.voice = chosen;
+    // ----- EN/ZH Mobile Toggle & Swipe -----
+    function applyMobileLang(lang) {
+      mobileLang = lang;
+      const enCol = document.getElementById('enCol');
+      const zhCol = document.getElementById('zhCol');
+      const btnEn = document.getElementById('toggleEnBtn');
+      const btnZh = document.getElementById('toggleZhBtn');
+      if (window.innerWidth <= 640) {
+        enCol.classList.toggle('mobile-visible', lang === 'en');
+        zhCol.classList.toggle('mobile-visible', lang === 'zh');
       } else {
-        u.lang = 'zh-CN';
+        enCol.classList.add('mobile-visible');
+        zhCol.classList.add('mobile-visible');
       }
-      u.onboundary = (e) => {
-        if (e.charIndex == null) return;
-        const r = readingRanges.find(r => e.charIndex >= r.start && e.charIndex < r.end);
-        if (r) highlightParagraph(r.idx, lang);
-      };
-      u.onend = () => {
-        clearHighlight();
-        if (readingMode === 'sections') advanceToNextSection();
-        else resetSpeechState();
-      };
-      u.onerror = resetSpeechState;
-      speechSynthesis.speak(u);
-      speechState = 'playing';
-      updateSpeakButtons();
+      if (btnEn) btnEn.classList.toggle('active', lang === 'en');
+      if (btnZh) btnZh.classList.toggle('active', lang === 'zh');
     }
 
-    function handleSpeakClick(lang) {
-      if (!window.speechSynthesis) return alert('TTS not supported.');
-      if (speechState === 'idle') {
-        startSpeaking(lang);
-      } else if (speechState === 'paused-between') {
-        // resume from where we left off (already advanced to next section)
-        startSpeaking(lang);
-      } else if (readingColumn !== lang) {
-        startSpeaking(lang);
-      } else if (speechState === 'playing') {
-        speechSynthesis.pause();
-        speechState = 'paused';
-        updateSpeakButtons();
-      } else if (speechState === 'paused') {
-        speechSynthesis.resume();
-        speechState = 'playing';
-        updateSpeakButtons();
-      }
-    }
+    document.getElementById('toggleEnBtn').addEventListener('click', () => applyMobileLang('en'));
+    document.getElementById('toggleZhBtn').addEventListener('click', () => applyMobileLang('zh'));
+    window.addEventListener('resize', () => applyMobileLang(mobileLang));
 
-    document.getElementById('speakBtn').addEventListener('click', () => handleSpeakClick('en'));
-    document.getElementById('speakZhBtn').addEventListener('click', () => handleSpeakClick('zh'));
-    document.getElementById('stopBtn').addEventListener('click', stopSpeaking);
+    // Swipe left = show Chinese, swipe right = show English
+    let swipeStartX = 0;
+    const colsContainer = document.getElementById('colsContainer');
+    colsContainer.addEventListener('touchstart', e => { swipeStartX = e.touches[0].clientX; }, { passive: true });
+    colsContainer.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - swipeStartX;
+      if (Math.abs(dx) > 50 && window.innerWidth <= 640) {
+        applyMobileLang(dx < 0 ? 'zh' : 'en');
+      }
+    }, { passive: true });
+
+    // stub — called in simplify toggle and chapter load
+    function stopSpeaking() {}
 
     document.getElementById('checkTfBtn').addEventListener('click', () => {
       const quizArr = currentChapter.sections && readingMode==='sections' ? (currentChapter.sections[currentSection]?.quiz || []) : (currentChapter.quiz || []);
